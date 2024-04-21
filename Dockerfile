@@ -1,10 +1,10 @@
-FROM maven:3.9.6-amazoncorretto-17-debian-bookworm AS BUILD_IMAGE
+FROM --platform=linux/arm64 maven:3.9.6-amazoncorretto-17-debian-bookworm AS BUILD_IMAGE
 ENV APP_HOME=/root/dev/demo-app/
 WORKDIR $APP_HOME
 COPY . .
 RUN mvn clean install
 
-FROM openjdk:17
+FROM --platform=linux/arm64 openjdk:17
 ARG linux/amd64
 WORKDIR /root/
 COPY --from=BUILD_IMAGE /root/dev/demo-app/target/demo-0.0.1-SNAPSHOT.jar .
