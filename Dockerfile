@@ -5,6 +5,7 @@ COPY . .
 RUN mvn clean install
 
 FROM openjdk:17
+ARG linux/amd64
 WORKDIR /root/
 COPY --from=BUILD_IMAGE /root/dev/demo-app/target/demo-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
